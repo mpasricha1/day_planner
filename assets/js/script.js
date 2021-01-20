@@ -15,8 +15,8 @@ function renderDay(){
 			timeOfDay = i - 12;
 		}
 		var timeSpot = $("<div>").attr({"class": "col-md-1"}).text(`${timeOfDay} ${amOrPm}`);
-		var textArea = $("<textarea>").attr({"class": "col-md-10"});
-		var saveBtn = $("<button>").attr({"class": "col-md-1"}).text("Save");
+		var textArea = $("<input>").attr({"class": "col-md-10", "type": "text"});
+		var saveBtn = $("<button>").attr({"class": "btn btn-info col-md-1"}).text("Save");
 
 		timeRow.append(timeSpot, textArea, saveBtn);
 		calendar.append(timeRow)
