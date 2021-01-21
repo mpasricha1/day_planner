@@ -45,27 +45,18 @@ function saveData(){
 		dailyTasks.push(taskObject);
 		localStorage.setItem(currentDate, JSON.stringify(dailyTasks));
 	}
-
-	// if(window.localStorage.length === 0){
-	// 	var userDataArr = []; 
-	// 	userDataArr.push(userData);
-	// 	localStorage.setItem("userDataArr", JSON.stringify(userDataArr));
-	// }else {
-	// 	var userDataArr = JSON.parse(localStorage.getItem("userDataArr"));
-	// 	userDataArr.push(userData);
-	// 	localStorage.setItem("userDataArr", JSON.stringify(userDataArr));
-	// }
-
-
-
-
-	// taskObject.timeSlot = $(this).parent().attr("id");
-	// taskObject.task = $(`#input${time}`).val()
-	// localStorage.setItem(currentDate, );
 }
 
-function loadDay(){
-	var data = localStorage.getItem()
+function loadData(){
+	if(localStorage.getItem(`${currentDate}`) !== null){
+		var data = JSON.parse(localStorage.getItem(`${currentDate}`))
+		console.log(data)
+
+		data.forEach(datum => {
+			console.log(datum.timeSlot);
+			$(`#input${datum.timeSlot}`).val(datum.task);
+		})
+	}
 }
 $(document).ready(function() {
 
@@ -73,3 +64,4 @@ $(document).ready(function() {
 });
 
 renderDay();
+loadData();
