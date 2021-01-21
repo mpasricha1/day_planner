@@ -24,7 +24,7 @@ function renderDay(){
 
 		var inputGroup = $("<div>").attr({"class": "input-group mb-3", "id":`${i}`});
 		var timeSpot = $("<div>").attr({"class": "col-md-1"}).text(`${timeOfDay} ${amOrPm}`);
-		var textArea = $("<input>").attr({"class": "form-control col-md-10", "type": "text", "id":`t${i}`});
+		var textArea = $("<input>").attr({"class": "form-control col-md-10", "type": "text", "id":`input${i}`});
 		var inputGroup2 = $("<div>").attr({"class": "input-group-append"});
 		var submitBtn = $("<button>").attr({"class": "btn btn-info", "type": "button"}).text("Submit")
 
@@ -35,7 +35,7 @@ function renderDay(){
 
 function saveData(){
 	taskObject.timeSlot = $(this).parent().attr("id");
-	taskObject.task = $(`#t${taskObject.timeSlot}`).val();
+	taskObject.task = $(`#input${taskObject.timeSlot}`).val();
 
 	if(localStorage.getItem(`${currentDate}`) === null){
 	 	dailyTasks.push(taskObject);
@@ -53,16 +53,15 @@ function loadData(){
 
 		data.forEach(datum => {
 			console.log(datum.timeSlot);
-			$(`#t${datum.timeSlot}`).val(datum.task);
+			$(`#input${datum.timeSlot}`).val(datum.task);
 		})
 	}
 }; 
 
 function colorCodeTasks(){
-	var hour = 13
-	// moment().format("HH"); 
+	var hour =  moment().format("HH"); 
 	$(".col-md-10").each(function(){
-		var taskHour = parseInt($(this).attr("id").substring(1));
+		var taskHour = parseInt($(this).attr("id").substring(5));
 		console.log(taskHour);
 		if(taskHour < hour){
 			$(this).css({"background-color": "#778899", "color": "white"});
