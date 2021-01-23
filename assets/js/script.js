@@ -16,7 +16,7 @@ function renderDay(){
 		if(i > 11){
 			amOrPm = "PM"; 
 		}else{
-			amOrPm = "AM"
+			amOrPm = "AM";
 		}
 		if(i > 12){
 			timeOfDay = i - 12;
@@ -26,10 +26,10 @@ function renderDay(){
 		var timeSpot = $("<div>").attr({"class": "col-md-1"}).text(`${timeOfDay} ${amOrPm}`);
 		var textArea = $("<input>").attr({"class": "form-control col-md-10", "type": "text", "id":`input${i}`});
 		var inputGroup2 = $("<div>").attr({"class": "input-group-append"});
-		var submitBtn = $("<button>").attr({"class": "btn btn-info", "type": "button"}).text("Submit")
+		var submitBtn = $("<button>").attr({"class": "btn btn-info", "type": "button"}).text("Submit");
 
 		inputGroup.append(timeSpot,textArea,inputGroup2,submitBtn);
-		calendar.append(inputGroup)
+		calendar.append(inputGroup);
 	}
 };
 
@@ -49,10 +49,9 @@ function saveData(){
 
 function loadData(){
 	if(localStorage.getItem(`${currentDate}`) !== null){
-		var data = JSON.parse(localStorage.getItem(`${currentDate}`))
+		var data = JSON.parse(localStorage.getItem(`${currentDate}`));
 
 		data.forEach(datum => {
-			console.log(datum.timeSlot);
 			$(`#input${datum.timeSlot}`).val(datum.task);
 		})
 	}
@@ -62,7 +61,6 @@ function colorCodeTasks(){
 	var hour =  moment().format("HH"); 
 	$(".col-md-10").each(function(){
 		var taskHour = parseInt($(this).attr("id").substring(5));
-		console.log(taskHour);
 		if(taskHour < hour){
 			$(this).css({"background-color": "#778899", "color": "white"});
 		}else if(taskHour > hour){
@@ -72,9 +70,9 @@ function colorCodeTasks(){
 		}
 	})
 }
-$(document).ready(function() {
 
-	$("button").on("click", saveData)
+$(document).ready(function() {
+	$("button").on("click", saveData);
 });
 
 renderDay();
